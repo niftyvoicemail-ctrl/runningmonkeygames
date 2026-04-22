@@ -4,37 +4,212 @@
   <meta charset="UTF-8">
   <title>Running Monkey Games</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+    * {
+      box-sizing: border-box;
       margin: 0;
-      text-align: center;
+      padding: 0;
     }
-    .box {
-      max-width: 600px;
-      padding: 2rem;
+
+    body {
+      background: #000;
+      color: #eee;
+      font-family: system-ui, Arial, sans-serif;
+      line-height: 1.6;
     }
+
+    a {
+      color: #f0c15c;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ffd77f;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: center;
+      padding: 24px 0 18px;
+    }
+
+    header img {
+      max-width: 1200px;
+      max-height: 220px;
+      width: auto;
+      height: auto;
+      display: block;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* MAIN */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.75rem;
+      font-size: 2rem;
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
     }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      letter-spacing: 0.04em;
+    }
+
     p {
-      font-size: 1.1rem;
-      opacity: 0.85;
+      max-width: 760px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 16px;
+    }
+
+    /* GAME CARDS */
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      margin-top: 24px;
+    }
+
+    .card {
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 20px 22px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.8);
+    }
+
+    .pre {
+      color: #ffd77f;
+      border-color: rgba(255,215,120,0.6);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      padding: 36px 20px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 60px;
+    }
+
+    @media (max-width: 640px) {
+      header img {
+        max-height: 140px;
+      }
+      nav {
+        flex-wrap: wrap;
+        gap: 18px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="box">
-    <h1>Running Monkey Games</h1>
-    <p>Website under construction.</p>
-    <p>Check back soon.</p>
-  </div>
+
+<header>
+  <img src="RMG-logo.png" alt="Running Monkey Games">
+</header>
+
+<nav>
+  <a href="#games">Games</a>
+  <a href="testing.html">Pre‑Release</a>
+  <a href="#community">Community</a>
+  <a href="#about">About</a>
+</nav>
+
+<main>
+
+  <h1>Independent Games, Built with Chaos and Care</h1>
+
+  <p>
+    Running Monkey Games is an independent studio focused on playful,
+    experimental, and occasionally unhinged game ideas — built across
+    mobile and web platforms.
+  </p>
+
+  <section id="games">
+    <h2>Games</h2>
+
+    <div class="games">
+      <div class="card">
+        <h3>Photo Blaster</h3>
+        <p>
+          A frantic, camera‑powered arcade shooter blending real‑world
+          input with fast, absurd gameplay.
+        </p>
+        <a href="games/photoblaster/index.html">
+          View Game Page
+        </a>
+        <div class="tag pre">Pre‑Release</div>
+      </div>
+
+      <div class="card">
+        <h3>Photo Blaster II</h3>
+        <p>
+          Bigger levels, more chaos, and new mechanics — currently
+          in development.
+        </p>
+        <div class="tag">Coming Soon</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="community">
+    <h2>Community</h2>
+    <p>
+      Community features are coming soon. For now, pre‑release testing
+      is the best way to get involved.
+    </p>
+    <p>
+      <a href="testing.html">Join the Pre‑Release Tester Program</a>
+    </p>
+  </section>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>
+      We build games because it’s fun, occasionally difficult,
+      and often nonsense — which is exactly how we like it.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  © Running Monkey Games™ · All rights reserved
+</footer>
+
 </body>
 </html>

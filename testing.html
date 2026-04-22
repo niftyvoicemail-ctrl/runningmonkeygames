@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Photo Blaster – Pre‑Release Testing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      background: #000;
+      color: #eee;
+      font-family: system-ui, Arial, sans-serif;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    h1 { margin-bottom: 16px; }
+    p { color: rgba(255,255,255,0.85); margin-bottom: 14px; }
+
+    label { display: block; margin-top: 18px; }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+    }
+
+    .checkbox { margin-top: 10px; }
+
+    button {
+      margin-top: 24px;
+      padding: 12px 20px;
+      background: #f0a000;
+      border: none;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .box {
+      margin-top: 28px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .note {
+      font-size: 0.8rem;
+      margin-top: 24px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    a {
+      color: #f0c15c;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ffd77f;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Photo Blaster – Pre‑Release Testing</h1>
+
+<p>
+Photo Blaster is entering <strong>Pre‑Release testing</strong> on Android.
+</p>
+
+<p>
+<strong>Important:</strong> Testers are activated manually.  
+Please allow some time after signing up before access is granted.
+</p>
+
+<div id="formArea">
+
+  <label>
+    Google Play / Android Account Email
+    <input type="email" required placeholder="you@gmail.com">
+  </label>
+
+  <label class="checkbox">
+    <input type="checkbox">  
+    I’d like to be considered for future tests
+  </label>
+
+  <label class="checkbox">
+    <input type="checkbox">  
+    Please delete my email after testing is complete
+  </label>
+
+  <button onclick="submitForm()">Submit</button>
+
+</div>
+
+<div class="box">
+  <strong>Join the Test on Google Play</strong>
+
+  <p>
+    <a href="https://play.google.com/apps/testing/com.photoblaster.game" target="_blank">
+      Join the Photo Blaster Test (Web)
+    </a>
+  </p>
+
+  <p>
+    <a href="https://play.google.com/store/apps/details?id=com.photoblaster.game" target="_blank">
+      View Photo Blaster on Google Play
+    </a>
+  </p>
+</div>
+
+<p class="note">
+No marketing emails.  
+Once testing is complete, this page will be updated to thank everyone who participated.
+</p>
+
+<script>
+function submitForm() {
+  document.getElementById("formArea").innerHTML = `
+    <h2>Thank you!</h2>
+    <p>
+      Your interest in Photo Blaster pre‑release testing is appreciated.
+    </p>
+    <p>
+      Please use the Google Play links above to join the test.
+      Activation may take a little time.
+    </p>
+  `;
+}
+</script>
+
+</body>
+</html>
