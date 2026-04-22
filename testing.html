@@ -15,10 +15,19 @@
       padding: 60px 20px;
     }
 
-    h1 { margin-bottom: 16px; }
-    p { color: rgba(255,255,255,0.85); margin-bottom: 14px; }
+    h1 {
+      margin-bottom: 16px;
+    }
 
-    label { display: block; margin-top: 18px; }
+    p {
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      margin-top: 18px;
+    }
 
     input[type="email"] {
       width: 100%;
@@ -26,7 +35,9 @@
       margin-top: 6px;
     }
 
-    .checkbox { margin-top: 10px; }
+    .checkbox {
+      margin-top: 10px;
+    }
 
     button {
       margin-top: 24px;
@@ -38,25 +49,10 @@
       font-weight: bold;
     }
 
-    .box {
-      margin-top: 28px;
-      padding: 20px;
-      border: 1px solid rgba(255,255,255,0.25);
-    }
-
     .note {
       font-size: 0.8rem;
       margin-top: 24px;
       color: rgba(255,255,255,0.6);
-    }
-
-    a {
-      color: #f0c15c;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: #ffd77f;
     }
   </style>
 </head>
@@ -70,66 +66,46 @@ Photo Blaster is entering <strong>Pre‑Release testing</strong> on Android.
 </p>
 
 <p>
-<strong>Important:</strong> Testers are activated manually.  
-Please allow some time after signing up before access is granted.
+If you would like to help test the game, enter the email address associated
+with your Google Play account below.
 </p>
 
-<div id="formArea">
+<p>
+<strong>Important:</strong> Testers are added manually.  
+Please allow some time for access to be activated after submitting.
+</p>
+
+<!-- NETLIFY FORM -->
+<form name="tester-signup"
+      method="POST"
+      data-netlify="true"
+      action="/testing-success.html">
+
+  <!-- required hidden input -->
+  <input type="hidden" name="form-name" value="tester-signup">
 
   <label>
     Google Play / Android Account Email
-    <input type="email" required placeholder="you@gmail.com">
+    <input type="email" name="email" required placeholder="you@gmail.com">
   </label>
 
   <label class="checkbox">
-    <input type="checkbox">  
+    <input type="checkbox" name="futureTester">
     I’d like to be considered for future tests
   </label>
 
   <label class="checkbox">
-    <input type="checkbox">  
+    <input type="checkbox" name="deleteAfter">
     Please delete my email after testing is complete
   </label>
 
-  <button onclick="submitForm()">Submit</button>
-
-</div>
-
-<div class="box">
-  <strong>Join the Test on Google Play</strong>
-
-  <p>
-    <a href="https://play.google.com/apps/testing/com.photoblaster.game" target="_blank">
-      Join the Photo Blaster Test (Web)
-    </a>
-  </p>
-
-  <p>
-    <a href="https://play.google.com/store/apps/details?id=com.photoblaster.game" target="_blank">
-      View Photo Blaster on Google Play
-    </a>
-  </p>
-</div>
+  <button type="submit">Submit Tester Request</button>
+</form>
 
 <p class="note">
-No marketing emails.  
-Once testing is complete, this page will be updated to thank everyone who participated.
+Emails are stored privately and used only to manage access to pre‑release testing.
+No marketing emails will be sent.
 </p>
-
-<script>
-function submitForm() {
-  document.getElementById("formArea").innerHTML = `
-    <h2>Thank you!</h2>
-    <p>
-      Your interest in Photo Blaster pre‑release testing is appreciated.
-    </p>
-    <p>
-      Please use the Google Play links above to join the test.
-      Activation may take a little time.
-    </p>
-  `;
-}
-</script>
 
 </body>
 </html>
