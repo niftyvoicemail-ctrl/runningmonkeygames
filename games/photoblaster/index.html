@@ -12,20 +12,59 @@
       font-family: system-ui, Arial, sans-serif;
       margin: 0;
     }
+
+    a {
+      color: #f0c15c;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ffd77f;
+    }
+
     .hero {
       display: flex;
       justify-content: center;
-      padding: 40px 20px;
+      padding: 40px 20px 24px;
     }
-    img {
-      max-width: 1200px;
+
+    .hero img {
+      max-width: 900px;
       width: 100%;
       height: auto;
     }
+
     .content {
       max-width: 900px;
       margin: 0 auto;
-      padding: 20px 24px 60px;
+      padding: 0 24px 60px;
+    }
+
+    .content p {
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 16px;
+      max-width: 760px;
+    }
+
+    .play-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      margin-top: 8px;
+      border: 1px solid rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.06);
+      color: #ffd77f;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .play-btn:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,215,120,0.8);
+      color: #ffd77f;
     }
   </style>
 </head>
@@ -33,7 +72,7 @@
 <body>
 
 <div class="hero">
- <img src="PB-title.png" alt="Photo B
+  <img src="PB-title.png" alt="Photo Blaster">
 </div>
 
 <div class="content">
@@ -42,9 +81,7 @@
     Pre‑Release testing is starting soon.
   </p>
 
-  <p>
-    ../../testing.htmlBecome a Pre‑Release Tester</a>
-  </p>
+  <a class="play-btn" href="play.html">&#9654; Play Web Version</a>
 </div>
 
 </body>
