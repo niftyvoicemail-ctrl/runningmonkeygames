@@ -99,20 +99,84 @@
       margin-bottom: 8px;
     }
 
-    .tag {
-      display: inline-block;
-      margin-top: 10px;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border: 1px solid rgba(255,255,255,0.3);
-      color: rgba(255,255,255,0.8);
+    /* GAME TITLE IMAGE */
+    .card-title-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 14px;
     }
 
-    .pre {
+    /* PLAY BUTTON */
+    .play-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      margin-top: 14px;
+      border: 1px solid rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.06);
       color: #ffd77f;
-      border-color: rgba(255,215,120,0.6);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .play-btn:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,215,120,0.8);
+    }
+
+    /* VIEW GAME PAGE BUTTON */
+    .page-btn {
+      display: inline-block;
+      padding: 8px 14px;
+      margin-top: 14px;
+      margin-right: 8px;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.04);
+      color: #ddd;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .page-btn:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    /* PRE-RELEASE TAG BUTTON */
+    .prerelease-btn {
+      display: inline-block;
+      padding: 8px 14px;
+      margin-top: 14px;
+      border: 1px solid #f0c15c;
+      background: transparent;
+      color: #f0c15c;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .prerelease-btn:hover {
+      background: rgba(240,193,92,0.12);
+      color: #ffd77f;
+    }
+
+    /* COMING SOON TAG */
+    .coming-soon {
+      display: inline-block;
+      padding: 8px 14px;
+      margin-top: 14px;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.4);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
 
     footer {
@@ -144,7 +208,7 @@
 
 <nav>
   <a href="#games">Games</a>
-  <a href="testing.html">Pre‑Release</a>
+  <a href="#pre-release">Pre-Release</a>
   <a href="#community">Community</a>
   <a href="#about">About</a>
 </nav>
@@ -163,16 +227,16 @@
     <h2>Games</h2>
 
     <div class="games">
+
       <div class="card">
         <h3>Photo Blaster</h3>
+        <img class="card-title-img" src="games/photoblaster/PB-title.png" alt="Photo Blaster">
         <p>
           A frantic, camera‑powered arcade shooter blending real‑world
           input with fast, absurd gameplay.
         </p>
-        <a href="games/photoblaster/index.html">
-          View Game Page
-        </a>
-        <div class="tag pre">Pre‑Release</div>
+        <a class="page-btn" href="games/photoblaster/index.html">View Game Page</a>
+        <a class="prerelease-btn" href="#pre-release">Pre-Release</a>
       </div>
 
       <div class="card">
@@ -181,26 +245,34 @@
           Bigger levels, more chaos, and new mechanics — currently
           in development.
         </p>
-        <div class="tag">Coming Soon</div>
+        <span class="coming-soon">Coming Soon</span>
       </div>
+
     </div>
+  </section>
+
+  <section id="pre-release">
+    <h2>Pre-Release</h2>
+    <p>
+      Pre-release testing for Photo Blaster is starting soon.
+      Sign up to get early access and help shape the game.
+    </p>
   </section>
 
   <section id="community">
     <h2>Community</h2>
     <p>
-      Community features are coming soon. For now, pre‑release testing
-      is the best way to get involved.
+      Community features are coming soon.
     </p>
     <p>
-      <a href="testing.html">Join the Pre‑Release Tester Program</a>
+      <a href="https://discord.gg/tvAQWqPv">Join the Running Monkey Games Discord</a>
     </p>
   </section>
 
   <section id="about">
     <h2>About</h2>
     <p>
-      We build games because it’s fun, occasionally difficult,
+      We build games because it's fun, occasionally difficult,
       and often nonsense — which is exactly how we like it.
     </p>
   </section>
