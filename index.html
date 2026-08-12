@@ -148,25 +148,6 @@
       color: #fff;
     }
 
-    /* PRE-RELEASE TAG BUTTON */
-    .prerelease-btn {
-      display: inline-block;
-      padding: 8px 14px;
-      margin-top: 14px;
-      border: 1px solid #f0c15c;
-      background: transparent;
-      color: #f0c15c;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: background 0.2s;
-    }
-
-    .prerelease-btn:hover {
-      background: rgba(240,193,92,0.12);
-      color: #ffd77f;
-    }
-
     /* COMING SOON TAG */
     .coming-soon {
       display: inline-block;
@@ -177,6 +158,19 @@
       font-size: 0.8rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
+    }
+
+    /* SOCIAL LINKS */
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 18px;
+    }
+
+    .socials a {
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
     }
 
     footer {
@@ -208,7 +202,6 @@
 
 <nav>
   <a href="#games">Games</a>
-  <a href="#pre-release">Pre-Release</a>
   <a href="#community">Community</a>
   <a href="#about">About</a>
 </nav>
@@ -235,29 +228,20 @@
           A frantic, camera‑powered arcade shooter blending real‑world
           input with fast, absurd gameplay.
         </p>
-        <a class="page-btn" href="games/photoblaster/index.html">View Game Page</a>
+        <a class="page-btn" href="games/photoblaster/index.html">Play Game</a>
         <a class="page-btn" href="buy/buy.html">Tip Jar</a>
-        <a class="prerelease-btn" href="#pre-release">Pre-Release</a>
       </div>
 
       <div class="card">
-        <h3>Photo Blaster II</h3>
+        <h3>VideoBlaster</h3>
         <p>
-          Bigger levels, more chaos, and new mechanics — currently
-          in development.
+          Bigger levels, more chaos, and new mechanics — currently in
+          development.
         </p>
         <span class="coming-soon">Coming Soon</span>
       </div>
 
     </div>
-  </section>
-
-  <section id="pre-release">
-    <h2>Pre-Release</h2>
-    <p>
-      Pre-release testing for Photo Blaster is starting soon.
-      Sign up to get early access and help shape the game.
-    </p>
   </section>
 
   <section id="community">
@@ -268,6 +252,12 @@
     <p>
       <a href="https://discord.gg/tvAQWqPv">Join the Running Monkey Games Discord</a>
     </p>
+    <div class="socials">
+      <a href="https://youtube.com/@RunningMonkeyGames">YouTube — @RunningMonkeyGames</a>
+      <a href="https://reddit.com/r/PhotoBlaster">Reddit — r/PhotoBlaster</a>
+      <a href="https://tiktok.com/@stillwild_land">TikTok — @stillwild_land</a>
+      <a href="https://bsky.app/profile/stillwild_land">Bluesky — @stillwild_land</a>
+    </div>
   </section>
 
   <section id="about">
