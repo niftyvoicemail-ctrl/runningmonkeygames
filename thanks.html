@@ -44,6 +44,24 @@
     line-height: 1.7;
     margin-bottom: 24px;
   }
+  .play-btn {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: .85rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #eee;
+    text-decoration: none;
+    padding: 14px 26px;
+    border: 1px solid #333;
+    background: #111;
+    margin-bottom: 28px;
+    transition: background .15s, border-color .15s;
+  }
+  .play-btn:hover {
+    background: #1a1a1a;
+    border-color: #555;
+  }
   .note {
     font-family: 'Courier New', monospace;
     font-size: .68rem;
@@ -54,22 +72,18 @@
 </head>
 <body>
 <div class="card">
-
   <!-- Add your logo -->
   <img src="/RMG-logo.png" class="logo" alt="RMG Logo">
-
   <div class="eyebrow">Payment Received</div>
   <h1>Thank You</h1>
-
   <p class="desc">
     Your support helps continue development and expansion of the project.
   </p>
-
+  <a class="play-btn" href="/games/photoblaster-free/index.html">Play the Ad-Free Version</a>
   <div class="note">
     RMG · Camp Babbling · Lunar Work<br>
     Independent development in progress.
   </div>
-
 </div>
 </body>
 </html>
