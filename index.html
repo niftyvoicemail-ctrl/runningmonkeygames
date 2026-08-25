@@ -55,9 +55,45 @@
       text-transform: uppercase;
     }
 
+    /* PAGE LAYOUT WRAPPER (main content + side ad rails) */
+    .page-body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 24px;
+      width: 100%;
+    }
+
+    /* SIDE AD RAILS */
+    .ad-rail {
+      flex: 0 0 160px;
+      width: 160px;
+      min-height: 600px;
+      display: none; /* hidden by default, shown at wide breakpoint below */
+      position: sticky;
+      top: 24px;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.25);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 8px;
+    }
+
+    /* Only show rails when there's enough room: main (1100) + padding + 2x160 + gaps */
+    @media (min-width: 1500px) {
+      .ad-rail {
+        display: flex;
+      }
+    }
+
     /* MAIN */
     main {
       max-width: 1100px;
+      width: 100%;
       margin: 0 auto;
       padding: 60px 24px;
     }
@@ -206,69 +242,99 @@
   <a href="#about">About</a>
 </nav>
 
-<main>
+<div class="page-body">
 
-  <h1>Independent Games, Built with Chaos and Care</h1>
+  <!-- LEFT AD RAIL -->
+  <div class="ad-rail" id="ad-rail-left">
+    <!--
+      AdSense 160x600 unit goes here, e.g.:
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:160px;height:600px"
+           data-ad-client="ca-pub-3377652388961369"
+           data-ad-slot="YOUR_SLOT_ID_HERE"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+    Ad
+  </div>
 
-  <p>
-    Running Monkey Games is an independent studio focused on playful,
-    experimental, and occasionally unhinged game ideas — built across
-    mobile and web platforms.
-  </p>
+  <main>
 
-  <section id="games">
-    <h2>Games</h2>
+    <h1>Independent Games, Built with Chaos and Care</h1>
 
-    <div class="games">
+    <p>
+      Running Monkey Games is an independent studio focused on playful,
+      experimental, and occasionally unhinged game ideas — built across
+      mobile and web platforms.
+    </p>
 
-      <div class="card">
-        <h3>Photo Blaster</h3>
-        <img class="card-title-img" src="games/photoblaster/PB-title.png" alt="Photo Blaster">
-        <p>
-          Having truble using your webcam? Try a diffent browser.
-          Make sure no other applications are using your webcam.
-        </p>
-        <a class="page-btn" href="games/photoblaster/index.html">Play Game</a>
-        <a class="page-btn" href="buy/buy.html">Tip Jar</a>
+    <section id="games">
+      <h2>Games</h2>
+
+      <div class="games">
+
+        <div class="card">
+          <h3>Photo Blaster</h3>
+          <img class="card-title-img" src="games/photoblaster/PB-title.png" alt="Photo Blaster">
+          <p>
+            Having truble using your webcam? Try a diffent browser.
+            Make sure no other applications are using your webcam.
+          </p>
+          <a class="page-btn" href="games/photoblaster/index.html">Play Game</a>
+          <a class="page-btn" href="buy/buy.html">Tip Jar</a>
+        </div>
+
+        <div class="card">
+          <h3>VideoBlaster</h3>
+          <p>
+            More chaos, and new mechanics — currently in
+            development.
+          </p>
+          <span class="coming-soon">Coming Soon</span>
+        </div>
+
       </div>
+    </section>
 
-      <div class="card">
-        <h3>VideoBlaster</h3>
-        <p>
-          More chaos, and new mechanics — currently in
-          development.
-        </p>
-        <span class="coming-soon">Coming Soon</span>
+    <section id="community">
+      <h2>Community</h2>
+      <p>
+         
+      </p>
+      <p>
+        <a href="https://discord.gg/tvAQWqPv">Join the Running Monkey Games Discord</a>
+      </p>
+      <div class="socials">
+        <a href="https://youtube.com/@RunningMonkeyGames">YouTube — @RunningMonkeyGames</a>
+        <a href="https://reddit.com/r/PhotoBlaster">Reddit — r/PhotoBlaster</a>
+        <a href="https://tiktok.com/@stillwild_land">TikTok — @stillwild_land</a>
+        <a href="https://bsky.app/profile/stillwild_land">Bluesky — @stillwild_land</a>
       </div>
+    </section>
 
-    </div>
-  </section>
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        We build games because it's fun, occasionally difficult,
+        and often nonsense — which is exactly how we like it.
+      </p>
+    </section>
 
-  <section id="community">
-    <h2>Community</h2>
-    <p>
-       
-    </p>
-    <p>
-      <a href="https://discord.gg/tvAQWqPv">Join the Running Monkey Games Discord</a>
-    </p>
-    <div class="socials">
-      <a href="https://youtube.com/@RunningMonkeyGames">YouTube — @RunningMonkeyGames</a>
-      <a href="https://reddit.com/r/PhotoBlaster">Reddit — r/PhotoBlaster</a>
-      <a href="https://tiktok.com/@stillwild_land">TikTok — @stillwild_land</a>
-      <a href="https://bsky.app/profile/stillwild_land">Bluesky — @stillwild_land</a>
-    </div>
-  </section>
+  </main>
 
-  <section id="about">
-    <h2>About</h2>
-    <p>
-      We build games because it's fun, occasionally difficult,
-      and often nonsense — which is exactly how we like it.
-    </p>
-  </section>
+  <!-- RIGHT AD RAIL -->
+  <div class="ad-rail" id="ad-rail-right">
+    <!--
+      AdSense 160x600 unit goes here, e.g.:
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:160px;height:600px"
+           data-ad-client="ca-pub-3377652388961369"
+           data-ad-slot="YOUR_SLOT_ID_HERE"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+    Ad
+  </div>
 
-</main>
+</div>
 
 <footer>
   © Running Monkey Games™ · All rights reserved
