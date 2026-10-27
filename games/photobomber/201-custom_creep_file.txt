@@ -1,0 +1,113 @@
+================================================================================================
+custom creep
+================================================================================================
+  custom-creep: Name
+    creep-type: troop/vehicle
+	        hp: ##
+	 max speed: ## pixel/s
+      recovery: # energy/second
+	fog of war: ### pixles
+        points: ##
+    spawn rate: ## seconds
+  spawn points: #
+          size: ## x ## pixles
+           CR#: #.#
+		   CR#: #.#
+		   CR#: #.#
+		   CR#: #.#
+		   CR#: #.#
+		  GM01: yes/no
+	      GM03: yes/no
+       vehicle: ## crew
+         troop: ability-#
+================================================================================================
+default creep sprites
+================================================================================================
+creep01: sprite
+1
+2
+
+creep02: sprite
+3
+4
+
+creep03: sprite
+5;5
+6;6
+
+creep04: sprite
+7;7;0;0
+8;8;0;0
+6;6;0;0
+
+creep05: sprite
+7;7;0;0;0;0;0;0
+8;8;0;0;0;0;0;0
+9;9;0;0;0;0;0;0
+6;6;0;0;0;0;0;0
+
+creep06: sprite
+7;7;7;7;7
+7;7;7;7;7
+5;5;5;5;5
+5;5;5;5;5
+6;6;6;6;6
+6;6;6;6;6
+
+creep07: sprite
+13;13;13;13;13;13;13;13;13;13
+13;13;13;13;13;13;13;13;13;13
+13;13;13;13;13;13;13;13;13;13
+13;13;13;13;13;13;13;13;13;13
+13;13;13;13;13;13;13;13;13;13
+13;13;13;13;13;13;13;13;13;13
+13;13;13;13;13;13;13;13;13;13
+13;13;13;13;13;13;13;13;13;13
+13;13;13;13;13;13;13;13;13;13
+7;7;7;7;7;7;7;7;7;7
+
+creep08: sprite
+10;10;10;10;10;10;10;10
+10;10;10;10;10;10;10;10
+10;10;10;10;10;10;10;10
+10;10;10;10;10;10;10;10
+10;10;10;10;10;10;10;10
+10;10;10;10;10;10;10;10
+2;2;2;2;2;2;2;2
+
+creep09: sprite
+11;11;11;11;11;11;11;11;11;11
+11;11;11;11;11;11;11;11;11;11
+12;12;12;12;12;12;12;12;12;12
+12;12;12;12;12;12;12;12;12;12
+
+creep10: sprite
+11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11
+11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11
+11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11
+11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11;11
+12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12
+12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12
+12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12
+12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12;12
+================================================================================================
+abilities
+================================================================================================
+    ability-01: technition, can repair vehicle 1hp/second
+    ability-02: stimulator, can give troops withen 10 pixles +1 speed & +1 recovery
+    ability-03: fire-fighter, puts out fires withen 10 pixles.
+	ability-04: spotter, can give troops withen 10 pixles +50 fog of war
+	ability-05: fogger, drops smoke canisters will smoke for 60 seconds 10 second cooldown
+	ability-06: engeneer, can build shelters to protect from thermobaric bombs
+	ability-07: lineman, all linemen have a combined fog of war map and shares with troops withen 10 pixles
+	ability-08: rangers, can move with out being seen. can hide 20 seconds 30 second cooldown
+ 	ability-09: smuggler, can spawn a random creep every 20 seconds
+	ability-10: chaff, makes proximity-fuse rounds detonate early, machine guns and howitzers only
+================================================================================================
+default abilities
+================================================================================================
+    default-01: digger, dig holes for shelter
+    default-02: insperation, can give there stats to near by solders
+    default-03: crew inside, can spawn solder/paratrooper when destroid. We need in crew # input for vehicles in creep data
+    default-04: soft-target, only proximity fuse can damage
+================================================================================================

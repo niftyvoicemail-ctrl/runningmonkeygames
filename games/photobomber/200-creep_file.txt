@@ -1,0 +1,226 @@
+200-creep_file.txt
+================================================================================================
+GAME MODES
+================================================================================================
+      GM01 is looking down      pilot/bomer       gravity is about -Z (screen space)
+void (GM02 is looking ahead  cannon/alterlery     gravity is about -y (screen space))
+      GM03 is looking up       anti-aicraft       gravity is about +Z (screen space)
+================================================================================================
+================================================================================================
+CREEPS
+================================================================================================
+creep rules are read from top to bottom. if rule can't be achieved, it is skipped.
+================================================================================================
+CR1 = Social behavior
+  1 = seeks groups
+  5 = neutral
+  9 = avoids groups
+CR2 = Fear of light
+  1 = seeks bright areas
+  5 = neutral
+  9 = seeks dark areas
+CR3 = Danger response
+  1 = curious / approaches danger
+  5 = neutral
+  9 = flees danger
+CR4 = Navigation style
+  1 = very predictable
+  5 = average
+  9 = highly erratic
+CR5 = Energy expenditure
+  1 = conserves energy
+  5 = average
+  9 = burns energy aggressively
+================================================================================================
+CREEP_TYPES (200-creep_file)
+================================================================================================
+       creep01: solder
+            hp: 1
+		energy: 4 ~ seconds at max speed
+	  recovery: 1 ~ per sec at rest
+     max speed: 3 pixel/s ~ 8'/s equil
+    fog of war: 150 pixles
+        points: 1
+    spawn rate: 1 second
+  spawn points: 4
+          size: 2 x 1 pixles  ~ 6'x 3' equil
+           CR2: 9
+		   CR1: 9
+		   CR3: 9
+		   CR5: 5
+		   CR4: 6
+		  GM01: yes Image: code
+void      GM02: yes Image: code
+	      GM03: no
+	   ability: dig trench when no better place to go - shelter - 50% black on creep map & 7% darker on image
+================================================================================================
+       creep02: Camander
+            hp: 1
+		energy: 5 ~ seconds at max speed
+      recovery: 1 ~ per sec at rest
+     max speed: 3 pixel/s ~ 8'/s equil
+	fog of war: 200 pixles
+        points: 2
+    spawn rate: 5 seconds
+  spawn points: 4
+          size: 2 x 1 pixles  ~ 6' x 3' equil
+           CR2: 9
+		   CR1: 9
+		   CR3: 8
+		   CR5: 7
+		   CR4: 8
+		  GM01: yes Image: code
+void      GM02: yes Image: code
+	      GM03: no
+	   ability: can give there stats to near by solders; spawns with creep01
+================================================================================================
+       creep03: ATV Vehicle + 1 Solder
+            hp: 3
+     max speed: 33 pixel/s ~ 88'/s equil
+	fog of war: 200 pixles
+        points: 4
+    spawn rate: 5 seconds
+  spawn points: 2
+          size: 2 x 2 pixles  ~ 6' x 6' equil
+		   CR3: 9  
+		   CR2: 9
+		   CR5: 9
+		   CR1: 8
+		   CR4: 6
+		  GM01: yes Image: code
+void      GM02: yes Image: code
+	      GM03: no
+	   ability: can spawn 1 solder when damaged
+================================================================================================
+       creep04: Jeep Vehicle + 4 Solders
+            hp: 12
+     max speed: 22 pixel/s ~ 58'/s equil
+      recovery: 0
+	fog of war: 250 pixles
+        points: 8
+    spawn rate: 10 seconds
+  spawn points: 2
+          size: 3 x 4 pixles  ~ 9' x 12' equil
+           CR2: 9
+		   CR5: 7
+		   CR3: 6
+		   CR1: 6
+		   CR4: 6
+		  GM01: yes Image: code
+void      GM02: yes Image: code
+	      GM03: no
+	   ability: can spawn 4 solders when damaged
+================================================================================================
+       creep05: M35-2.5-ton Vehicle + 2 Solders
+            hp: 24
+     max speed: 22 pixel/s ~ 58'/s equil
+      recovery: 0
+	fog of war: 250 pixles
+        points: 10
+    spawn rate: 10 seconds
+  spawn points: 2
+          size: 3 x 8 pixles  ~ 9' x 22' equil
+           CR2: 9
+		   CR5: 8
+		   CR3: 8 
+		   CR1: 7
+		   CR4: 6
+		  GM01: yes Image: code
+void      GM02: yes Image: code
+	      GM03: no
+	   ability: can spawn 2 solders when damaged
+================================================================================================
+       creep06: T-26-tank Vehicle + 3 Solders
+            hp: 40
+     max speed: 15 pixel/s ~ 44'/s equil
+      recovery: 0
+	fog of war: 250 pixles
+        points: 20
+    spawn rate: 20 seconds
+  spawn points: 2
+          size: 3 x 5 pixles  ~ 9' x 15' equil
+           CR2: 9
+		   CR5: 8
+		   CR3: 8 
+		   CR1: 7
+		   CR4: 6
+		  GM01: yes Image: code
+void      GM02: yes Image: code
+	      GM03: no
+	   ability: can spawn 3 solders when damaged
+================================================================================================
+       creep07: Paratrooper
+            hp: 1
+     max speed: 8 pixel/s ~ 6'/s equil
+	fog of war: 150 pixles
+      recovery: 0
+        points: 1
+    spawn rate: 1 second
+  spawn points: 4
+          size: 10 x 10 pixles  ~ 30'x 30' equil
+           CR2: 8
+		   CR1: 9		   
+		   CR5: 9
+		   CR3: 9
+		   CR4: 6
+		  GM01: no 
+void      GM02: no 
+	      GM03: yes Image: code
+================================================================================================
+       creep08: Biplane Vehicle + 2 Paratrooper
+            hp: 3
+	 max speed: 52 pixel/s ~ 140'/s equil
+      recovery: 0
+	fog of war: 250 pixles
+        points: 10
+    spawn rate: 5 seconds
+  spawn points: 2
+          size: 7 x 8 pixles  ~ 21' x 24' equil
+           CR2: 8
+		   CR5: 9
+		   CR3: 9
+		   CR1: 8
+		   CR4: 6
+		  GM01: no
+void      GM02: no
+	      GM03: yes Image: code
+	   ability: can spawn 2 Paratrooper when damaged
+================================================================================================
+       creep09: Mini-Blimp Vehicle + 2 Paratrooper
+            hp: 12
+	 max speed: 10 pixel/s ~ 140'/s equil
+      recovery: 0
+	fog of war: 250 pixles
+        points: 20
+    spawn rate: 8 seconds
+  spawn points: 2
+          size: 4 x 10 pixles  ~
+           CR2: 8
+		   CR5: 9
+		   CR3: 9
+		   CR1: 8
+		   CR4: 4
+		  GM01: no
+void      GM02: no
+	      GM03: yes Image: code
+	   ability: can spawn 2 Paratrooper when damaged, only proximity fuse can damage
+================================================================================================
+       creep10: Air-Ship Vehicle + 10 Paratrooper
+            hp: 30
+	 max speed: 10 pixel/s ~ 140'/s equil
+      recovery: 0
+	fog of war: 250 pixles
+        points: 30
+    spawn rate: 10 seconds
+  spawn points: 2
+          size: 8 x 20 pixles  ~
+           CR2: 8
+		   CR5: 9
+		   CR3: 9
+		   CR1: 8
+		   CR4: 1
+		  GM01: no
+void      GM02: no
+	      GM03: yes Image: code
+	   ability: can spawn 10 Paratrooper when damaged, only proximity fuse can damage
+================================================================================================

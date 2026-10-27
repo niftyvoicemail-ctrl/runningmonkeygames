@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Photo Blaster</title>
+
+<style>
+
+body
+{
+    margin:0;
+    overflow:hidden;
+    background:black;
+}
+
+canvas
+{
+    display:block;
+}
+
+#mapPickerBtn
+{
+    position:fixed;
+    top:10px;
+    right:10px;
+    z-index:10;
+    padding:8px 14px;
+}
+
+#gameModeBtn
+{
+    position:fixed;
+    top:10px;
+    right:170px;
+    z-index:10;
+    padding:8px 14px;
+}
+
+/* =========================================
+   NEW WEAPON BUTTON
+========================================= */
+
+#upgrade01Btn
+{
+    position:fixed;
+    bottom:50px;
+    left:10px;
+    z-index:10;
+    padding:8px 14px;
+}
+
+#upgrade02Btn
+{
+    position:fixed;
+    bottom:50px;
+    left:250px;
+    z-index:10;
+    padding:8px 14px;
+}
+
+#weaponBtn
+{
+    position:fixed;
+    bottom:10px;
+    left:10px;
+    z-index:10;
+    padding:8px 14px;
+}
+
+/* =========================================
+   NEW AMMO BUTTON
+========================================= */
+
+#ammoBtn
+{
+    position:fixed;
+    bottom:10px;
+    left:250px;
+    z-index:10;
+    padding:8px 14px;
+}
+
+/* =========================================
+   QUIT TO HUB (gameplay only)
+========================================= */
+
+#quitBtn
+{
+    position:fixed;
+    top:10px;
+    left:10px;
+    z-index:10;
+    padding:8px 14px;
+}
+
+/* =========================================
+   MENU MODE
+========================================= */
+/* the gameplay DOM buttons are hidden while
+   the menu screens are up - they still exist
+   so their loaders can attach listeners at
+   page load, they just aren't visible */
+
+body.menu-mode #mapPickerBtn,
+body.menu-mode #gameModeBtn,
+body.menu-mode #upgrade01Btn,
+body.menu-mode #upgrade02Btn,
+body.menu-mode #weaponBtn,
+body.menu-mode #ammoBtn,
+body.menu-mode #quitBtn
+{
+    display:none;
+}
+
+/* =========================================
+   CAMERA CAPTURE
+========================================= */
+
+#cameraOverlay
+{
+    position:fixed;
+    inset:0;
+    background:black;
+    z-index:30;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+#cameraOverlay.hidden
+{
+    display:none;
+}
+
+#camVideo
+{
+    max-width:97%;
+    max-height:88%;
+}
+
+#cameraStatus
+{
+    color:white;
+    font-family:sans-serif;
+    margin-bottom:16px;
+    text-align:center;
+    white-space:pre-line;
+    max-width:320px;
+}
+
+#takePhotoBtn
+{
+    margin-top:20px;
+    padding:14px 28px;
+    font-size:18px;
+}
+
+#takePhotoBtn:disabled
+{
+    opacity:0.4;
+}
+
+</style>
+
+</head>
+
+<body class="menu-mode">
+
+<canvas id="game"></canvas>
+
+<!-- starts hidden - startGameplay() reveals it -->
+
+<div id="cameraOverlay" class="hidden">
+    <div id="cameraStatus">Requesting camera access...</div>
+    <video id="camVideo" autoplay playsinline muted></video>
+    <button id="takePhotoBtn" disabled>Take Photo</button>
+</div>
+
+<button id="quitBtn">
+    Quit To Hub
+</button>
+
+<button id="gameModeBtn">
+    Mode: GM01
+</button>
+
+<button id="mapPickerBtn">
+    Load Map Image
+</button>
+
+<button id="upgrade01Btn">
+    Upgrade01 L0
+</button>
+
+<button id="upgrade02Btn">
+    Upgrade02 L0
+</button>
+
+<button id="weaponBtn">
+    Weapon
+</button>
+
+<button id="ammoBtn">
+    Ammo
+</button>
+
+<input
+    type="file"
+    id="mapPickerInput"
+    accept="image/*"
+    style="display:none;"
+>
+
+<script>
+
+// =====================================================
+// CANVAS
+// =====================================================
+
+const canvas =
+    document.getElementById(
+        "game"
+    );
+
+const ctx =
+    canvas.getContext(
+        "2d"
+    );
+
+// =====================================================
+// RESIZE
+// =====================================================
+
+function resize()
+{
+    canvas.width =
+        window.innerWidth;
+
+    canvas.height =
+        window.innerHeight;
+}
+
+window.addEventListener(
+    "resize",
+    resize
+);
+
+resize();
+
+// =====================================================
+// GAME STATE
+// =====================================================
+// "menu" - screenManager drives update/draw
+// "game" - the gameplay loop drives update/draw
+//
+// this is what keeps the menus and gameplay isolated
+// from each other while both live in the same page.
+
+let gameState = "menu";
+
+// =====================================================
+// SHARED GLOBALS
+// =====================================================
+
+const creeps = [];
+
+const mapImage =
+    new Image();
+
+let darkSpots = [];
+
+let dangerX = -9999;
+let dangerY = -9999;
+
+let dangerTimer = 0;
+
+let score = 0;
+let antiScore = 0;
+
+let gameOver = false;
+
+let playerBase = null;
+
+let waitingForBasePlacement = true;
+
+// click weapon system globals
+
+let pendingHitX = null;
+let pendingHitY = null;
+
+let pendingHitDamage = 1;
+let pendingHitRadius = 25;
+
+</script>
+
+<!-- ==================================================
+     MENU SYSTEM
+================================================== -->
+
+<script src="js/input.js"></script>
+
+<script src="js/soundManager.js"></script>
+
+<script src="js/saveManager.js"></script>
+
+<script src="js/screen-ui.js"></script>
+
+<script src="js/screen-manager.js"></script>
+
+<script src="js/screen-title.js"></script>
+
+<script src="js/screen-menu.js"></script>
+
+<script src="js/screen-hub.js"></script>
+
+<script src="js/screen-gameMode.js"></script>
+
+<script src="js/screen-upgrade.js"></script>
+
+<script src="js/screen-badgeRoom.js"></script>
+
+<script src="js/screen-loadout.js"></script>
+
+<script src="js/screen-creepEditer.js"></script>
+
+<!-- ==================================================
+     GAMEPLAY MODULES
+================================================== -->
+
+<script src="js/camera.js"></script>
+
+<script src="js/map.js"></script>
+
+<script src="js/trenches.js"></script>
+
+<script src="js/ammoLoader.js"></script>
+
+<script src="js/ammoeffects.js"></script>
+
+<script src="js/effectLoader.js"></script>
+
+<script src="js/weaponLoader.js"></script>
+
+<script src="js/creepLoader.js"></script>
+
+<script src="js/spawning.js"></script>
+
+<script src="js/abilities.js"></script>
+
+<script src="js/weapons.js"></script>
+
+<script src="js/update.js"></script>
+
+<script src="js/draw.js"></script>
+
+<script src="js/crosshair.js"></script>
+
+<!-- ==================================================
+     MENU / GAMEPLAY HANDOFF
+================================================== -->
+
+<script>
+
+// =====================================================
+// BLOCK GAMEPLAY INPUT WHILE IN MENUS
+// =====================================================
+// weapons.js attaches click/mousedown listeners straight
+// to the canvas. rather than editing that file, these
+// capture-phase listeners run first and stop the event
+// dead whenever we're not actually in gameplay.
+
+[
+    "click",
+    "mousedown",
+    "mouseup"
+]
+.forEach(
+    eventName =>
+    {
+        canvas.addEventListener(
+            eventName,
+
+            (e) =>
+            {
+                if (gameState !== "game")
+                {
+                    e.stopImmediatePropagation();
+                }
+            },
+
+            true
+        );
+    }
+);
+
+// =====================================================
+// START GAMEPLAY
+// =====================================================
+// called by screen-gameMode.js
+
+function startGameplay(mode)
+{
+    console.log(
+        "START GAMEPLAY",
+        mode
+    );
+
+    // ---------------- game mode
+
+    ACTIVE_GAME_MODE = mode;
+
+    gameModeIndex =
+        GAME_MODES.indexOf(mode);
+
+    if (gameModeIndex < 0)
+    {
+        gameModeIndex = 0;
+    }
+
+    gameModeBtn.textContent =
+        "Mode: " +
+        ACTIVE_GAME_MODE.toUpperCase();
+
+    if (
+        typeof refreshWeaponsForMode ===
+        "function"
+    )
+    {
+        refreshWeaponsForMode();
+    }
+
+    // ---------------- reset the run
+
+    resetGameplay();
+
+    // ---------------- switch modes
+
+    soundManager.stopMusic();
+
+    gameState = "game";
+
+    document.body.classList.remove(
+        "menu-mode"
+    );
+
+    // ---------------- take the photo
+
+    if (
+        typeof startCameraCapture ===
+        "function"
+    )
+    {
+        startCameraCapture();
+    }
+}
+
+// =====================================================
+// RESET GAMEPLAY
+// =====================================================
+// clears a previous run so starting a second game
+// doesn't inherit the last one's creeps and score
+
+function resetGameplay()
+{
+    creeps.length = 0;
+
+    score = 0;
+    antiScore = 0;
+
+    gameOver = false;
+
+    playerBase = null;
+
+    waitingForBasePlacement = true;
+
+    dangerX = -9999;
+    dangerY = -9999;
+    dangerTimer = 0;
+
+    pendingHitX = null;
+    pendingHitY = null;
+
+    // clear spawn locations so they get
+    // rebuilt against the new photo
+
+    if (
+        typeof creepTypes !== "undefined" &&
+        creepTypes
+    )
+    {
+        for (const type of creepTypes)
+        {
+            type.spawnLocations = null;
+
+            type.spawnCounter = 0;
+        }
+    }
+
+    // clear leftover effects
+
+    if (
+        typeof resetTrenches === "function"
+    )
+    {
+        resetTrenches();
+    }
+
+    if (
+        typeof dustClouds !== "undefined"
+    )
+    {
+        dustClouds.length = 0;
+    }
+
+    if (
+        typeof fires !== "undefined"
+    )
+    {
+        fires.length = 0;
+    }
+
+    if (
+        typeof impactEvents !== "undefined"
+    )
+    {
+        impactEvents.length = 0;
+    }
+}
+
+// =====================================================
+// QUIT TO HUB
+// =====================================================
+
+function quitToHub()
+{
+    gameState = "menu";
+
+    document.body.classList.add(
+        "menu-mode"
+    );
+
+    // make sure the camera isn't left running
+
+    if (
+        typeof stopCam === "function"
+    )
+    {
+        stopCam();
+    }
+
+    cameraOverlay.classList.add(
+        "hidden"
+    );
+
+    // TODO - fold this run's score into
+    // currentSave.statistics before saving
+
+    saveManager.saveCurrent();
+
+    input.clear();
+
+    screenManager.changeScreenByName(
+        "hub"
+    );
+}
+
+document.getElementById("quitBtn")
+    .addEventListener(
+        "click",
+        quitToHub
+    );
+
+// =====================================================
+// REGISTER SCREENS
+// =====================================================
+
+screenManager.register("title",       screenTitle);
+screenManager.register("menu",        screenMenu);
+screenManager.register("hub",         screenHub);
+screenManager.register("gameMode",    screenGameMode);
+screenManager.register("upgrade",     screenUpgrade);
+screenManager.register("badgeRoom",   screenBadgeRoom);
+screenManager.register("loadout",     screenLoadout);
+screenManager.register("creepEditor", screenCreepEditor);
+
+screenManager.changeScreenByName("title");
+
+// =====================================================
+// MAIN LOOP
+// =====================================================
+
+let lastTime =
+    performance.now();
+
+function gameLoop()
+{
+    const now =
+        performance.now();
+
+    const delta =
+        now - lastTime;
+
+    lastTime = now;
+
+    // -------------------------------------
+    // MENU MODE
+    // -------------------------------------
+
+    if (gameState === "menu")
+    {
+        screenManager.update(delta);
+
+        screenManager.draw(ctx);
+
+        requestAnimationFrame(
+            gameLoop
+        );
+
+        return;
+    }
+
+    // -------------------------------------
+    // GAMEPLAY MODE
+    // -------------------------------------
+
+    if(
+        typeof updateEffects ===
+        "function"
+    )
+    {
+        updateEffects();
+    }
+
+    if(
+        typeof update ===
+        "function"
+    )
+    {
+        update();
+    }
+
+    if(
+        typeof draw ===
+        "function"
+    )
+    {
+        draw();
+    }
+
+    // trenches sit on top of the photo but under
+    // the dust/fire effects
+
+    if(
+        typeof drawTrenches ===
+        "function"
+    )
+    {
+        drawTrenches();
+    }
+
+    if(
+        typeof drawEffects ===
+        "function"
+    )
+    {
+        drawEffects();
+    }
+
+    requestAnimationFrame(
+        gameLoop
+    );
+}
+
+gameLoop();
+
+</script>
+
+</body>
+</html>

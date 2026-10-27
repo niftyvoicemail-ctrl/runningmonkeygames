@@ -1,0 +1,46 @@
+================================================================================================
+EFFECTS_TYPES (500-effects_file.txt)
+================================================================================================
+              effect01: wind
+   changeing_wind_rate: random 0 - 20 seconds
+			wind_speed: random 0 - 5 pixles/second - displayed on UI
+		wind_direction: random 1 - 360 degrees - displayed on UI
+================================================================================================
+              effect02: fire
+           fire_frames: 502-fire-frame-01.png, 502-fire-frame-02.png, 502-fire-frame-03.png
+       fire_frame_time: 0.06 second
+       fire_then_black: true
+   delay_fire_to_black: 0.04 second
+      chance_to_spread: 2% per second 
+         digital_smoke: true
+wind_effects_direction: true
+ map_effects_direction: true - burns adjacent pixles +/ 5% brightness
+           effects_map: true - darked pixles
+     effects_creep_map: true - britens pixles
+      effects_creep_hp: true - 1 hp/second
+ map_materails_effects: true - paper=50% misc=40% metal=20% flesh=10%
+================================================================================================
+              effect03: smoke
+         digital_smoke: true
+wind_effects_direction: true
+           smoke_fades: 10 second
+	 effects_creep_FOW: true
+================================================================================================
+              effect04: dust
+          digital_dust: true
+wind_effects_direction: true
+            dust_fades: see ammo for time
+     effects_creep_FOW: true
+================================================================================================
+              effect05: flash
+      fire-ball_frames: 504-flash-frame-01.png, 504-flash-frame-02.png, 504-flash-frame-03.png
+         fireBall_time: ammo file controlled frames
+		 fireBall_size: ammo file controlled
+        can_start_fire: true 10%
+================================================================================================
+              effect06: soft target hole
+     damage multiplyer: 3(x)
+        damage repeats: every 10 seconds or 1/10 damage per second
+     damage fades to 0: in 30 seconds hole - in 60 seconds large hole 
+================================================================================================
+             

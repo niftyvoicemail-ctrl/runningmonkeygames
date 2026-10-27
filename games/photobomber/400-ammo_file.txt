@@ -1,0 +1,206 @@
+================================================================================================
+AMMO TYPES   (400-ammo_file.txt)
+================================================================================================
+      bullet01: armor peiricing
+	  	  icon: 401-armer_peiricing_icon.png
+        damage: 3 hit 0 splash
+ splash effect: 1 pixel ~ 3'
+  bullet speed: 3,000'/s
+ bullet weight: 1.6 oz
+  damage delay: 10 seconds
+   dust damage: true
+     dust size: 6 pixel
+     dust time: 6 seconds
+   damage size: 3 pixel ~ 18'
+ 		report: none
+ report volumn: none
+  report delay: none
+		  GM01: yes
+void      GM02: yes
+	      GM03: yes
+	   ability: kills 1 crew member inside vehicle
+	   ability: passes through soft targets, no damage
+	 upgrade01: 2(X) 3(X) 4(X) more damage and crew killed
+================================================================================================
+      bullet02: fragmentation-proximity
+	  	  icon: 402-fragmentation_icon.png
+        damage: 1 hit 1 splash
+ splash effect: 6 pixel ~ 12'
+  bullet speed: 3,000'/s
+ bullet weight: 1.6 oz
+  damage delay: 10 seconds
+   dust damage: true
+     dust size: 7 pixel
+     dust time: 7 seconds
+   damage size: 6 pixel ~ 18'
+		report: 402-fragmentation_report.wav
+ report volumn: 0.8
+  report delay: 6.25 seconds
+		  GM01: yes
+void      GM02: yes
+	      GM03: yes
+	   ability: punches hole in soft target - see effect file - soft target hole
+	 upgrade01: 2(X) 3(X) 4(X) bigger splash and bigger hole
+================================================================================================
+      bullet03: incendiary bullets
+	  	  icon: bullet03 icon.png
+        damage: 1 hit 1 splash
+ splash effect: 3 pixel ~ 18'
+  bullet speed: 3,000'/s
+ bullet weight: 1.6 oz
+  damage delay: 10 seconds
+   dust damage: true
+     dust size: 6 pixel
+     dust time: 6 seconds
+  flash damage: true
+    flash time: 0.03 second
+    flast size: 4 pixel
+   damage size: 3 pixel ~ 9'
+		report: none
+ report volumn: none
+  report delay: none
+		  GM01: yes
+void      GM02: yes
+	      GM03: yes
+	   ability: 20% chance to start fire 
+	   ability: 50% chance to hit soft targets
+	 upgrade01: 2(X) 3(X) 4(X) bigger splash and higher % chance to start fire
+================================================================================================
+SHELLS
+================================================================================================
+	   shell01: armor peiricing
+	  	  icon: 411-shell_armer_peiricing_icon.png
+        damage: 50 hit 5 splash
+ splash effect: 30 pixel ~ 20'
+   shell speed: 3000'/s
+  shell weight: 50 kg
+  damage delay: 10 seconds
+   dust damage: true
+     dust size: 40 pixel
+     dust time: 40 seconds
+  flash damage: true 
+    flash time: 0.06 second 
+    flash size: 30 pixel	
+   damage size: 30 pixel ~ 20'
+		report: 411-shell_armer_peiricing_report.wav
+ report volumn: 0.9
+  report delay: 6.25 seconds
+		  GM01: yes
+void      GM02: yes
+	      GM03: yes
+	   ability: kills 10 crew member inside vehicle
+	   ability: passes through soft targets, no damage
+	 upgrade01: 2(X) 3(X) 4(X) more damage and crew killed
+================================================================================================
+	   shell02: fragmentation-proximity
+	  	  icon: 412-shell_fragmentation_icon.png
+        damage: 20 hit 10 splash
+ splash effect: 60 pixel ~ 40'
+   shell speed: 3000'/s
+  shell weight: 50 kg
+  damage delay: 10 seconds
+   dust damage: true
+     dust size: 70 pixel
+     dust time: 70 seconds
+  flash damage: true 
+    flash time: 0.09 second 
+    flash size: 60 pixel	
+   damage size: 60 pixel ~ 40'
+		report: 412-shell_fragmentation_report.wav
+ report volumn: 0.9
+  report delay: 6.25 seconds
+		  GM01: yes
+void      GM02: yes
+	      GM03: yes
+	   ability: ability: punches large hole in soft target - see effect file - soft target hole
+	 upgrade01: 2(X) 3(X) 4(X) bigger splash and bigger hole
+================================================================================================
+	   shell03: incendiary
+	  	  icon: 413-shell_incendiary_icon.png
+        damage: 20 hit 10 splash
+ splash effect: 30 pixel ~ 20'
+   shell speed: 3000'/s
+  shell weight: 50 kg
+  damage delay: 10 seconds
+   dust damage: true
+     dust size: 40 pixel
+     dust time: 40 seconds
+  flash damage: true 
+    flash time: 0.15 second 
+    flash size: 30 pixel	
+   damage size: 30 pixel ~ 20'
+		report: 413-shell_incendiary_report.wav
+ report volumn: 0.9
+  report delay: 6.25 seconds
+		  GM01: yes
+void      GM02: yes
+	      GM03: yes
+	   ability: 20% chance to start fire 
+	   ability: 50% chance to hit soft targets
+	 upgrade01: 2(X) 3(X) 4(X) bigger splash and higher % chance to start fire
+================================================================================================
+BOMBS
+================================================================================================
+	    BOMB01: high explosive
+	  	  icon: 421-bomb_high-explosive_icon.png
+        damage: 50 hit 30 splash
+ splash effect: 60 pixel ~ 40'
+    bomb speed: 1 G exceleration
+   bomb weight: 5000 kg
+  damage delay: 60 seconds
+   dust damage: true
+     dust size: 70 pixel
+     dust time: 70 seconds
+  flash damage: true 
+    flash time: 0.15 second 
+    flash size: 60 pixel
+   damage size: 60 pixel ~ 40'
+		report: 421-bomb_high-explosive_report.wav
+ report volumn: 0.9
+  report delay: 6.25 seconds
+		  GM01: yes
+void      GM02: no
+	      GM03: no
+	   ability: 20% chance to kill all crew members inside vehicle
+	   upgrade01: 2(X) 3(X) 4(X) more damage and higher chance to kill crew
+================================================================================================
+	    BOMB02: thermobaric
+	  	  icon: 422-bomb_thermobaric_ico.png
+        damage: 10 hit 10 splash
+ splash effect: 100 pixel ~ 66'
+    bomb speed: 1 G exceleration
+   bomb weight: 5000 kg
+  damage delay: 60 seconds
+   dust damage: true
+     dust size: 110 pixel
+     dust time: 110 seconds
+  flash damage: true 
+    flash time: 0.2 second 
+    flash size: 100 pixel
+   damage size: 100 pixel ~ 66'
+		report: 422-bomb_thermobaric_report.wav
+ report volumn: 0.9
+  report delay: 6.25 seconds
+		  GM01: yes
+void      GM02: no
+	      GM03: no
+	   ability: 10% chance to kill solders inside of shelter 
+	 upgrade01: 2(X) 3(X) 4(X) bigger splash and higher chance to kill solders in shelter
+================================================================================================
+	    BOMB03: cluster
+	  	  icon: 423-bomb_cluster_ico.png
+        damage: 0 hit 0 splash
+ splash effect: 100 pixel ~ 66'
+    bomb speed: 1 G exceleration
+   bomb weight: 5000 kg
+  damage delay: 60 seconds overides shells
+   damage type: none see shells
+		report: none
+ report volumn: 0.0
+  report delay: 6.25 seconds
+		  GM01: yes
+void      GM02: no
+	      GM03: no
+	   ability: releases 100 shells - random#_shell01 - random#_shell02 - random#_shell03
+	 upgrade01: 2(X) 3(X) 4(X) bigger splash and more shells
+================================================================================================

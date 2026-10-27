@@ -1,0 +1,45 @@
+================================================================================================
+WEAPON TYPES (300-weapon_file.txt)
+================================================================================================
+       weapon01: machinegun - automatic
+  	  crosshair: 301-machinegun_crosshair.png
+           bang: 301-machinegun_bang.wav
+    bang volumn: 0.3
+	     reload: 0.5 seconds
+   reload_sound: 301-machinegun_reload.wav
+  reload volumn: 0.2
+      fire rate: 10 rounds/second per barrel
+ 	  	   GM01: yes
+void       GM02: yes
+	       GM03: yes
+	  upgrade01: 1 -> 2 -> 3 -> 4 - barrels
+      upgrade02: magazine size, per barrel 50 -> 100 -> 150 -> infinite  
+================================================================================================
+       weapon02: howitzer - simi-automatic
+  	 	 barrel: 302-howitzer_barrel.png	
+           bang: 302-howitzer_bang.wav
+    bang volumn: 0.6
+	     reload: 1.0 seconds
+   reload_sound: 302-howitzer_reload.wav
+  reload volumn: 0.3
+      fire rate: 1 round every 2 seconds per barrel
+ 	  	   GM01: yes
+void       GM02: yes
+	       GM03: yes
+	  upgrade01: +10% -> +20% -> +30% -> +50% barrel size - more damage & faster ammo
+      upgrade02: magazine size, per barrel 5 -> 10 -> 15 -> infinite & automatic
+================================================================================================
+       weapon03: gravity_bomb - simi-automatic
+           bang: 303-bomb_bang.wav
+    bang volumn: 0.0
+     bang flash: none
+      fire rate: 1 round every 30 seconds per bay
+   reload_sound: 303-bomb_reload.wav
+  reload volumn: 0.3
+   wind_effects: true   
+ 	  	   GM01: yes
+void       GM02: no
+	       GM03: no
+	  upgrade01: +10% -> +20% -> +30% -> +50% bomb size - more damage & splash size
+      upgrade02: 1 -> 2 -> 3 -> 4 - bomb_bays
+================================================================================================
