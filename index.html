@@ -184,6 +184,38 @@
       color: #fff;
     }
 
+    /* PLATFORM PLAY BUTTONS (Apple / everyone else) */
+    .play-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .play-row .page-btn {
+      margin: 0;
+      flex: 1 1 160px;
+      text-align: center;
+      padding: 12px 14px;
+    }
+
+    .page-btn.primary {
+      color: #ffd77f;
+      border-color: rgba(255,215,120,0.7);
+      background: rgba(255,215,120,0.12);
+      box-shadow: 0 0 14px rgba(255,215,120,0.25);
+    }
+
+    .page-btn.primary::after {
+      content: " \2605";
+    }
+
+    .play-note {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 10px;
+    }
+
     /* COMING SOON TAG */
     .coming-soon {
       display: inline-block;
@@ -279,10 +311,16 @@
           <h3>Photo Blaster</h3>
           <img class="card-title-img" src="games/photoblaster/PB-title.png" alt="Photo Blaster">
           <p>
-            Having truble using your webcam? Try a diffent browser.
+            Trouble using your webcam? Try a different browser.
             Make sure no other applications are using your webcam.
           </p>
-          <a class="page-btn" href="games/photoblaster/index.html">Play Game</a>
+
+          <div class="play-row">
+            <a class="page-btn" id="btn-apple" href="games/photoblaster-safari/index.html">🍎 Play on iPhone / iPad / Mac</a>
+            <a class="page-btn" id="btn-other" href="games/photoblaster/index.html">▶ Play on PC / Android</a>
+          </div>
+          <p class="play-note">iPhone tip: open in Safari, then Share → Add to Home Screen for fullscreen.</p>
+
           <a class="page-btn" href="buy/buy.html">Tip Jar</a>
         </div>
 
@@ -343,6 +381,12 @@
 <footer>
   © Running Monkey Games™ · All rights reserved
 </footer>
+
+<script>
+  // Highlight the best-fit play button for the visitor's device
+  var isApple = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
+  document.getElementById(isApple ? "btn-apple" : "btn-other").classList.add("primary");
+</script>
 
 </body>
 </html>
