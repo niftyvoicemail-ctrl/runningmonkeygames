@@ -216,6 +216,36 @@
       margin-top: 10px;
     }
 
+
+    /* VIDEOBLASTER BINARY ANIMATION */
+    .vb-anim {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      aspect-ratio: 3 / 2;
+      margin-top: 14px;
+      background: #000;
+      border: 1px solid #333;
+      border-radius: 4px;
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .vb-anim canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+    }
+
+    .vb-anim .scanlines {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.3) 50%);
+      background-size: 100% 4px;
+      pointer-events: none;
+    }
+
     /* COMING SOON TAG */
     .coming-soon {
       display: inline-block;
@@ -330,6 +360,12 @@
             More chaos, and new mechanics — currently in
             development.
           </p>
+
+          <div class="vb-anim">
+            <canvas id="vbCanvas" width="360" height="240"></canvas>
+            <div class="scanlines"></div>
+          </div>
+
           <span class="coming-soon">Coming Soon</span>
         </div>
 
@@ -386,6 +422,176 @@
   // Highlight the best-fit play button for the visitor's device
   var isApple = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
   document.getElementById(isApple ? "btn-apple" : "btn-other").classList.add("primary");
+</script>
+
+<script>
+// VideoBlaster "building code one bit at a time" animation
+(function () {
+  const canvas = document.getElementById('vbCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  const COLS = 8, ROWS = 11, CELL_W = 26, CELL_H = 16;
+  const OFFSET_X = (canvas.width - (COLS * CELL_W)) / 2;
+  const OFFSET_Y = 45;
+  const COLOR = "#33ff00", BG_COLOR = "#000000";
+  const FALLING_COLOR = "#ffffff", ERROR_COLOR = "#ff3333";
+  const DROP_SPEED = 0.2, MOVE_SPEED = 0.25;
+
+  const MESSAGE = "RUNNING MONKEY GAMES: BUILT WITH CHAOS AND CARE. ";
+  const fullBinaryString = MESSAGE.split('').map(c => c.charCodeAt(0).toString(2).padStart(8, '0')).join('');
+  let binaryIndex = 0;
+  function getNextBit() {
+    if (binaryIndex >= fullBinaryString.length) binaryIndex = 0;
+    return fullBinaryString[binaryIndex++];
+  }
+
+  let grid = [], activeBit = null, nextBit = getNextBit();
+  let totalCompletedRows = 0, isLocked = false, lockTimer = 0;
+  let isDropping = false, dropTimer = 0;
+
+  function initGrid() {
+    grid = [];
+    for (let y = 0; y < ROWS; y++) grid.push(new Array(COLS).fill(null));
+    activeBit = null; totalCompletedRows = 0;
+    isLocked = false; lockTimer = 0; isDropping = false;
+  }
+
+  function getTargetSlot() {
+    const availableRows = [];
+    for (let y = ROWS - 1; y >= 0; y--) if (grid[y].includes(null)) availableRows.push(y);
+    if (availableRows.length === 0) return null;
+    const targetY = Math.random() < 0.75
+      ? availableRows[0]
+      : availableRows[Math.floor(Math.random() * availableRows.length)];
+    let targetX = 0;
+    for (let x = 0; x < COLS; x++) if (grid[targetY][x] === null) { targetX = x; break; }
+    return { x: targetX, y: targetY };
+  }
+
+  function spawnBit() {
+    if (activeBit || isLocked || isDropping) return;
+    const target = getTargetSlot();
+    if (target) {
+      activeBit = { char: nextBit, x: COLS - 1, y: 0, targetX: target.x, targetY: target.y, state: 'down' };
+      nextBit = getNextBit();
+    }
+  }
+
+  function update() {
+    if (isLocked) {
+      if (++lockTimer > 90) { isLocked = false; lockTimer = 0; }
+      return;
+    }
+    if (isDropping) {
+      if (--dropTimer <= 0) {
+        grid.pop();
+        grid.unshift(new Array(COLS).fill(null));
+        isDropping = false;
+        if (totalCompletedRows > 0 && totalCompletedRows % 3 === 0) { isLocked = true; lockTimer = 0; }
+      }
+      return;
+    }
+    if (!activeBit) spawnBit();
+    if (activeBit) {
+      if (activeBit.state === 'down') {
+        activeBit.y += DROP_SPEED;
+        if (activeBit.y >= activeBit.targetY) { activeBit.y = activeBit.targetY; activeBit.state = 'left'; }
+      } else {
+        activeBit.x -= MOVE_SPEED;
+        if (activeBit.x <= activeBit.targetX) {
+          activeBit.x = activeBit.targetX;
+          grid[activeBit.targetY][activeBit.targetX] = activeBit.char;
+          const landedY = activeBit.targetY;
+          activeBit = null;
+          checkRowCompletion(landedY);
+        }
+      }
+    }
+  }
+
+  function checkRowCompletion(landedY) {
+    if (!grid[landedY].includes(null)) {
+      totalCompletedRows++;
+      if (landedY === ROWS - 1) {
+        isDropping = true; dropTimer = 20;
+      } else if (totalCompletedRows > 0 && totalCompletedRows % 3 === 0) {
+        isLocked = true; lockTimer = 0;
+      }
+    }
+  }
+
+  function draw() {
+    ctx.fillStyle = BG_COLOR;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = COLOR;
+    ctx.font = "bold 11px 'Courier New', Courier, monospace";
+    ctx.textBaseline = "alphabetic";
+    ctx.textAlign = "left";
+    ctx.fillText("building code live", 12, 16);
+    ctx.fillText("one bit at a time", 12, 30);
+    ctx.textAlign = "right";
+    ctx.fillText("next " + nextBit, canvas.width - 12, 16);
+
+    ctx.font = "bold 16px 'Courier New', Courier, monospace";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    for (let y = 0; y < ROWS; y++) {
+      for (let x = 0; x < COLS; x++) {
+        const ch = grid[y][x];
+        if (ch === null) continue;
+        let color = COLOR, glow = 2;
+        if (isDropping && y === ROWS - 1) {
+          color = (Math.floor(dropTimer / 4) % 2 === 0) ? "#ffffff" : "#ff0000";
+          glow = 8;
+        }
+        ctx.fillStyle = color; ctx.shadowBlur = glow; ctx.shadowColor = color;
+        ctx.fillText(ch, x * CELL_W + CELL_W / 2 + OFFSET_X, y * CELL_H + CELL_H / 2 + OFFSET_Y);
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    if (activeBit) {
+      ctx.fillStyle = FALLING_COLOR; ctx.shadowBlur = 8; ctx.shadowColor = FALLING_COLOR;
+      ctx.fillText(activeBit.char,
+        activeBit.x * CELL_W + CELL_W / 2 + OFFSET_X,
+        activeBit.y * CELL_H + CELL_H / 2 + OFFSET_Y);
+      ctx.shadowBlur = 0;
+    }
+
+    if (isLocked && Math.floor(lockTimer / 5) % 2 === 0) {
+      ctx.fillStyle = "rgba(255, 0, 0, 0.2)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = ERROR_COLOR;
+      ctx.textAlign = "center";
+      ctx.font = "bold 16px 'Courier New', Courier, monospace";
+      ctx.fillText("SYSTEM GLITCH", canvas.width / 2, canvas.height / 2 - 5);
+      ctx.font = "bold 11px 'Courier New', Courier, monospace";
+      ctx.fillText("RECOVERING...", canvas.width / 2, canvas.height / 2 + 15);
+    }
+  }
+
+  // Only animate while the card is on screen (saves battery / CPU)
+  let running = false;
+  function loop() {
+    if (!running) return;
+    update(); draw();
+    requestAnimationFrame(loop);
+  }
+  initGrid();
+  draw();
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      const vis = entries[0].isIntersecting;
+      if (vis && !running) { running = true; loop(); }
+      else if (!vis) running = false;
+    }).observe(canvas);
+  } else {
+    running = true; loop();
+  }
+})();
 </script>
 
 </body>
